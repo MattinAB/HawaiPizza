@@ -1,7 +1,7 @@
 import React from "react";
 import { FlatList, StyleSheet, View } from "react-native";
 import { SearchBar } from "../component/SearchBar";
-import { Screen } from "../const/Screen";
+import { SafeView } from "../const/SafeView";
 import { StatusBar } from "expo-status-bar";
 import { ResturantCard } from "../component/ResturantCard";
 
@@ -46,11 +46,11 @@ export default () => {
   ];
   return (
     <>
-      <Screen>
+      <SafeView>
         <View style={styles.searchBar}>
           <SearchBar placeholder="Search" />
         </View>
-        <View>
+        <View style={styles.flatList}>
           <FlatList
             data={resturat}
             renderItem={({ item }) => (
@@ -65,7 +65,7 @@ export default () => {
             )}
           />
         </View>
-      </Screen>
+      </SafeView>
       <StatusBar style="auto" />
     </>
   );
@@ -75,5 +75,9 @@ const styles = StyleSheet.create({
   searchBar: {
     padding: 10,
     // flex: 0.2,
+  },
+  flatList: {
+    padding: 5,
+    paddingVertical: 10,
   },
 });

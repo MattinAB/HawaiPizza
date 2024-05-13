@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, StyleSheet, ViewStyle } from "react-native";
-import styles from "../const/styles";
+import styles from "../const/theme/styles";
 
 interface Props {
   children: React.ReactNode;
