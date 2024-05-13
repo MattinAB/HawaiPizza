@@ -1,6 +1,6 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { TextInput } from "react-native-paper";
+import { StyleSheet, Text, View, TextInput } from "react-native";
+import colors from "../const/colors";
 
 interface SearchbarProps {
   placeholder: string;
@@ -16,9 +16,9 @@ export const SearchBar = ({ placeholder, ...otherProps }: SearchbarProps) => {
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: colors.light,
     width: "100%",
-    height: 50,
-    borderRadius: 15,
+    borderRadius: 20,
     padding: 10,
   },
 });
