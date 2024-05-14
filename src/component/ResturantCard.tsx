@@ -3,6 +3,8 @@ import { View, StyleSheet, Image, Text, ViewStyle } from "react-native";
 import { colors } from "../const/theme/colors";
 import { AppText } from "./AppText";
 import { theme } from "../const/theme";
+import { SvgXml } from "react-native-svg";
+import start from "../../assets/star";
 
 interface ResturantCardProps {
   resturant: {
@@ -19,6 +21,8 @@ interface ResturantCardProps {
 export const ResturantCard = ({ resturant }: ResturantCardProps) => {
   const { name, icon, photos, address, isOpenNow, rating, isCloseTemporary } =
     resturant;
+  const ratingArray = Array.from(new Array(Math.ceil(rating)));
+
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
@@ -27,7 +31,11 @@ export const ResturantCard = ({ resturant }: ResturantCardProps) => {
       <View style={styles.details}>
         <AppText style={styles.name}>{name}</AppText>
         <AppText style={styles.address}>Adress: {address}</AppText>
-        <AppText style={styles.rating}>Rating: {rating}</AppText>
+        <View style={styles.rating}>
+          {ratingArray.map(() => (
+            <SvgXml height={20} width={20} xml={start} />
+          ))}
+        </View>
       </View>
     </View>
   );
@@ -52,19 +60,18 @@ const styles = StyleSheet.create({
 
   address: {
     fontSize: theme.fontSizes.caption,
-    fontFamily: `${theme.fonts.monospace}`,
+    fontFamily: theme.fonts.monospace,
     fontStyle: "italic",
     color: colors.medium,
   },
   rating: {
-    fontSize: 16,
-    fontStyle: "italic",
+    flexDirection: "row",
   },
   details: {
     padding: 5,
     marginLeft: 15,
   },
   name: {
-    fontFamily: `${theme.fonts.body}`,
+    fontFamily: theme.fonts.body,
   },
 });

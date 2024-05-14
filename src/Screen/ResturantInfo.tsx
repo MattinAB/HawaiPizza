@@ -14,7 +14,7 @@ export default () => {
         "https://fastly.picsum.photos/id/63/5000/2813.jpg?hmac=HvaeSK6WT-G9bYF_CyB2m1ARQirL8UMnygdU9W6PDvM",
       ],
       address: "Krada Maream",
-      rating: 4,
+      rating: 3.2,
     },
     {
       id: 2,
@@ -23,7 +23,7 @@ export default () => {
         "https://fastly.picsum.photos/id/63/5000/2813.jpg?hmac=HvaeSK6WT-G9bYF_CyB2m1ARQirL8UMnygdU9W6PDvM",
       ],
       address: "Krada Maream",
-      rating: 4,
+      rating: 5,
     },
     {
       id: 3,
@@ -32,7 +32,7 @@ export default () => {
         "https://fastly.picsum.photos/id/63/5000/2813.jpg?hmac=HvaeSK6WT-G9bYF_CyB2m1ARQirL8UMnygdU9W6PDvM",
       ],
       address: "Krada Maream",
-      rating: 4,
+      rating: 2.2,
     },
     {
       id: 4,
@@ -41,7 +41,7 @@ export default () => {
         "https://fastly.picsum.photos/id/63/5000/2813.jpg?hmac=HvaeSK6WT-G9bYF_CyB2m1ARQirL8UMnygdU9W6PDvM",
       ],
       address: "Krada Maream",
-      rating: 4,
+      rating: 4.3,
     },
   ];
   return (
