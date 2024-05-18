@@ -1,14 +1,12 @@
 import ResturantInfo from "./src/Screen/ResturantInfo";
 import { useFonts as useLato, Lato_400Regular } from "@expo-google-fonts/lato";
-import { NavigationContainer } from "@react-navigation/native";
 import {
   useFonts as useOswald,
   Oswald_400Regular,
 } from "@expo-google-fonts/oswald";
-import { TabNavigation } from "./src/navigation/TabNavigation";
-import NavigationTheme from "./src/navigation/NavigationTheme";
 import { RestaurantProvider } from "./src/services/restaurant/restaurantContext";
 import { LocationProvider } from "./src/services/location/locationContext";
+import { Navigation } from "./src/navigation";
 
 export default function App() {
   const [latoLoad] = useLato({ Lato_400Regular });
@@ -18,12 +16,10 @@ export default function App() {
   }
 
   return (
-    <NavigationContainer theme={NavigationTheme}>
-      <LocationProvider>
-        <RestaurantProvider>
-          <TabNavigation />
-        </RestaurantProvider>
-      </LocationProvider>
-    </NavigationContainer>
+    <LocationProvider>
+      <RestaurantProvider>
+        <Navigation />
+      </RestaurantProvider>
+    </LocationProvider>
   );
 }
