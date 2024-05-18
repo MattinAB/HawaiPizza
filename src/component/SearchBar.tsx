@@ -1,19 +1,27 @@
-import React from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { StyleSheet, Text, View, TextInput } from "react-native";
 import { colors } from "../const/theme/colors";
-import {
-  lightGreen100,
-  yellow500,
-} from "react-native-paper/lib/typescript/styles/themes/v2/colors";
+import { LocationContext } from "../services/location/locationContext";
 
 interface SearchbarProps {
   placeholder: string;
 }
 
 export const SearchBar = ({ placeholder, ...otherProps }: SearchbarProps) => {
+  const { search, keyword } = useContext(LocationContext);
+  const [searchKeyword, setSearchKeyword] = useState(keyword);
+  useEffect(() => {
+    search(searchKeyword);
+  }, []);
   return (
     <View style={styles.container}>
-      <TextInput placeholder={placeholder} {...otherProps} />
+      <TextInput
+        value={searchKeyword}
+        onChangeText={(text) => setSearchKeyword(text)}
+        placeholder={placeholder}
+        {...otherProps}
+        onSubmitEditing={() => search(searchKeyword)}
+      />
     </View>
   );
 };

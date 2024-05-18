@@ -8,6 +8,7 @@ import {
 import { TabNavigation } from "./src/navigation/TabNavigation";
 import NavigationTheme from "./src/navigation/NavigationTheme";
 import { RestaurantProvider } from "./src/services/restaurant/restaurantContext";
+import { LocationProvider } from "./src/services/location/locationContext";
 
 export default function App() {
   const [latoLoad] = useLato({ Lato_400Regular });
@@ -18,9 +19,11 @@ export default function App() {
 
   return (
     <NavigationContainer theme={NavigationTheme}>
-      <RestaurantProvider>
-        <TabNavigation />
-      </RestaurantProvider>
+      <LocationProvider>
+        <RestaurantProvider>
+          <TabNavigation />
+        </RestaurantProvider>
+      </LocationProvider>
     </NavigationContainer>
   );
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, Image, Text, ViewStyle } from "react-native";
+import { View, StyleSheet, Image } from "react-native";
 import { colors } from "../const/theme/colors";
 import { AppText } from "./AppText";
 import { theme } from "../const/theme";
@@ -34,8 +34,8 @@ export const ResturantCard = ({ resturants }: ResturantCardProps) => {
         <AppText style={styles.address}>Adress: {address}</AppText>
         <View style={styles.section}>
           <View style={styles.rating}>
-            {ratingArray.map(() => (
-              <SvgXml height={25} width={25} xml={start} />
+            {ratingArray.map((_, index) => (
+              <SvgXml key={`star${index}`} height={25} width={25} xml={start} />
             ))}
           </View>
 
