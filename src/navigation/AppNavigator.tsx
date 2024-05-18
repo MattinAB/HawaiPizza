@@ -2,17 +2,17 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import NavigationTheme from "./NavigationTheme";
-import ResturantInfo from "../Screen/ResturantInfo";
 import SettingScreen from "../Screen/SettingScreen";
 import MapScreen from "../Screen/MapScreen";
 import Entypo from "@expo/vector-icons/Entypo";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { RestaurantNavigator } from "./restaurantNavigator";
 
 const Tab = createBottomTabNavigator();
 
 export const AppNavigator = () => (
   <NavigationContainer theme={NavigationTheme}>
-    <Tab.Navigator>
+    <Tab.Navigator screenOptions={{ headerShown: false }}>
       <Tab.Screen
         options={{
           tabBarIcon: ({ size, color }) => (
@@ -20,7 +20,7 @@ export const AppNavigator = () => (
           ),
         }}
         name="Resturant"
-        component={ResturantInfo}
+        component={RestaurantNavigator}
       />
       <Tab.Screen
         options={{

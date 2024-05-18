@@ -1,13 +1,15 @@
 import React from "react";
-import { View, StyleSheet, Image } from "react-native";
+import { View, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { colors } from "../const/theme/colors";
 import { AppText } from "./AppText";
 import { theme } from "../const/theme";
 import { SvgXml } from "react-native-svg";
 import start from "../../assets/star";
 import open from "../../assets/open";
+import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 
 interface ResturantCardProps {
+  onPress?: () => void;
   resturants: {
     name: string;
     icon?: string;
@@ -19,13 +21,13 @@ interface ResturantCardProps {
   };
 }
 
-export const ResturantCard = ({ resturants }: ResturantCardProps) => {
+export const RestaurantCard = ({ resturants, onPress }: ResturantCardProps) => {
   const { name, icon, photos, address, isOpenNow, rating, isCloseTemporary } =
     resturants;
   const ratingArray = Array.from(new Array(Math.floor(rating)));
 
   return (
-    <View style={styles.container} key={name}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <View style={styles.imageContainer}>
         <Image style={styles.image} source={{ uri: photos[0] }} />
       </View>
@@ -49,7 +51,7 @@ export const ResturantCard = ({ resturants }: ResturantCardProps) => {
           </View>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

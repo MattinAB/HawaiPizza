@@ -1,4 +1,4 @@
-import ResturantInfo from "./src/Screen/ResturantInfo";
+import ResturantInfo from "./src/Screen/RestaurantInfo";
 import { useFonts as useLato, Lato_400Regular } from "@expo-google-fonts/lato";
 import {
   useFonts as useOswald,
