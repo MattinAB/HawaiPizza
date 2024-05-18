@@ -12,12 +12,14 @@ export const LocationProvider = ({ children }) => {
   const onSearch = (searchKeyword) => {
     setIsLoading(true);
     setKeyword(searchKeyword);
-    if ((!searchKeyword).length) {
+  };
+  useEffect(() => {
+    if ((!keyword).length) {
       // don't do anything
       return;
     }
 
-    locationRequest(searchKeyword)
+    locationRequest(keyword)
       .then(locationTransform)
       .then((result) => {
         setIsLoading(false);
@@ -27,7 +29,7 @@ export const LocationProvider = ({ children }) => {
         setIsLoading(false);
         setError(err);
       });
-  };
+  }, [keyword]);
 
   useEffect(() => {
     onSearch();

@@ -10,9 +10,7 @@ interface SearchbarProps {
 export const SearchBar = ({ placeholder, ...otherProps }: SearchbarProps) => {
   const { search, keyword } = useContext(LocationContext);
   const [searchKeyword, setSearchKeyword] = useState(keyword);
-  useEffect(() => {
-    search(searchKeyword);
-  }, []);
+
   return (
     <View style={styles.container}>
       <TextInput
