@@ -5,6 +5,7 @@ import {
 } from "@react-navigation/stack";
 import { RestaurantDetails } from "../Screen/RestaurantDetails";
 import ResturantInfo from "../Screen/RestaurantInfo";
+import MapScreen from "../Screen/MapScreen";
 
 const Stack = createStackNavigator();
 
@@ -18,6 +19,7 @@ export const RestaurantNavigator = () => {
     >
       <Stack.Screen name="Restaurants" component={ResturantInfo} />
       <Stack.Screen name="RestaurantDetails" component={RestaurantDetails} />
+      <Stack.Screen name="MapScreen" component={MapScreen} />
     </Stack.Navigator>
   );
 };

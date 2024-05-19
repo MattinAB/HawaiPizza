@@ -10,7 +10,6 @@ interface Props {
 
 export const RestaurantDetails = ({ route }: Props) => {
   const [breakfastExpand, setBreakfastExpand] = useState(false);
-  const [] = useState(false);
   const { restaurant } = route.params;
   return (
     <SafeView>
