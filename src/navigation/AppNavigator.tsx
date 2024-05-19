@@ -6,7 +6,7 @@ import SettingScreen from "../Screen/SettingScreen";
 import MapScreen from "../Screen/MapScreen";
 import Entypo from "@expo/vector-icons/Entypo";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { RestaurantNavigator } from "./restaurantNavigator";
+import { RestaurantNavigator } from "./RestaurantNavigator";
 
 const Tab = createBottomTabNavigator();
 

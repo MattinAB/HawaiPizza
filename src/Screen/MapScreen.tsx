@@ -1,11 +1,38 @@
-import React from "react";
-import { StyleSheet } from "react-native";
-import { AppText } from "../component/AppText";
-import { SafeView } from "../const/SafeView";
+import React, { useState, useContext, useEffect } from "react";
+import { StyleSheet, View } from "react-native";
+import MapView from "react-native-maps";
+import { SearchBar } from "../component/SearchBar";
+import { LocationContext } from "../services/location/locationContext";
+
 export default () => {
+  const { search, keyword } = useContext(LocationContext);
+  const [searchKeyword, setSearchKeyword] = useState(keyword);
+
+  useEffect(() => {
+    setSearchKeyword(keyword);
+  }, [keyword]);
+
   return (
-    <SafeView>
-      <AppText>This is Map Screen </AppText>
-    </SafeView>
+    <>
+      <View style={styles.searchBar}>
+        <SearchBar
+          value={searchKeyword}
+          onChangeText={(text) => setSearchKeyword(text)}
+          onSubmitEditing={() => search(searchKeyword)}
+          placeholder="Search for location "
+        />
+      </View>
+      <MapView style={{ height: "100%" }} />
+    </>
   );
 };
+
+const styles = StyleSheet.create({
+  searchBar: {
+    padding: 10,
+    width: "100%",
+    position: "absolute",
+    zIndex: 999,
+    top: 50,
+  },
+});

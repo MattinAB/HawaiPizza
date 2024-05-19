@@ -1,24 +1,31 @@
-import React, { useState, useContext, useEffect } from "react";
-import { StyleSheet, Text, View, TextInput } from "react-native";
+import React from "react";
+import { View, TextInput, StyleSheet, ViewStyle } from "react-native";
 import { colors } from "../const/theme/colors";
-import { LocationContext } from "../services/location/locationContext";
 
-interface SearchbarProps {
+interface Props {
   placeholder: string;
+  value: string;
+  onChangeText: (text: string) => void;
+  secureTextEntry?: boolean;
+  onSubmitEditing: (value: any) => void;
+  style?: ViewStyle;
 }
-
-export const SearchBar = ({ placeholder, ...otherProps }: SearchbarProps) => {
-  const { search, keyword } = useContext(LocationContext);
-  const [searchKeyword, setSearchKeyword] = useState(keyword);
-
+export const SearchBar = ({
+  value,
+  onChangeText,
+  placeholder,
+  onSubmitEditing,
+  style,
+  ...otherProps
+}: Props) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style]}>
       <TextInput
-        value={searchKeyword}
-        onChangeText={(text) => setSearchKeyword(text)}
+        value={value}
+        onChangeText={onChangeText}
         placeholder={placeholder}
+        onSubmitEditing={onSubmitEditing}
         {...otherProps}
-        onSubmitEditing={() => search(searchKeyword)}
       />
     </View>
   );

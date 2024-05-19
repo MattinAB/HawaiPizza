@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { FlatList, StyleSheet, View } from "react-native";
-import { SearchBar } from "../component/SearchBar";
+import { RestaurantSearchBar } from "../component/Restaurant.SearchBar";
 import { SafeView } from "../const/SafeView";
 import { StatusBar } from "expo-status-bar";
 import { RestaurantCard } from "../component/RestaurantCard";
@@ -17,7 +17,7 @@ export default ({ navigation }: Props) => {
     <>
       <SafeView>
         <View style={styles.searchBar}>
-          <SearchBar placeholder="Search" />
+          <RestaurantSearchBar placeholder="Search" />
         </View>
         {isLoading && <ActivitiIndicator />}
         <FlatList
