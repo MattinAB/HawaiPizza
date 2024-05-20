@@ -1,6 +1,7 @@
 import React from "react";
 import { View, TextInput, StyleSheet, ViewStyle } from "react-native";
 import { colors } from "../const/theme/colors";
+import { AntDesign } from "@expo/vector-icons";
 
 interface Props {
   placeholder: string;
@@ -9,6 +10,8 @@ interface Props {
   secureTextEntry?: boolean;
   onSubmitEditing: (value: any) => void;
   style?: ViewStyle;
+  icon?: string;
+  onIconPress: () => void;
 }
 export const SearchBar = ({
   value,
@@ -16,10 +19,19 @@ export const SearchBar = ({
   placeholder,
   onSubmitEditing,
   style,
+  icon = "search1",
+  onIconPress,
   ...otherProps
 }: Props) => {
   return (
     <View style={[styles.container, style]}>
+      <AntDesign
+        onPress={onIconPress}
+        style={{ marginRight: 5 }}
+        name={icon}
+        size={20}
+        color="red"
+      />
       <TextInput
         value={value}
         onChangeText={onChangeText}
@@ -33,6 +45,7 @@ export const SearchBar = ({
 
 const styles = StyleSheet.create({
   container: {
+    flexDirection: "row",
     backgroundColor: colors.white,
     width: "100%",
     borderRadius: 20,

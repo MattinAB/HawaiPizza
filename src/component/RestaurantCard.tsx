@@ -6,8 +6,7 @@ import { theme } from "../const/theme";
 import { SvgXml } from "react-native-svg";
 import start from "../../assets/star";
 import open from "../../assets/open";
-import { TouchableWithoutFeedback } from "react-native-gesture-handler";
-
+import { Favourite } from "./favoruites/Favourite";
 interface ResturantCardProps {
   onPress?: () => void;
   resturants: {
@@ -28,6 +27,9 @@ export const RestaurantCard = ({ resturants, onPress }: ResturantCardProps) => {
 
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
+      <View style={styles.favourite}>
+        <Favourite restaurants={resturants} />
+      </View>
       <View style={styles.imageContainer}>
         <Image style={styles.image} source={{ uri: photos[0] }} />
       </View>
@@ -104,5 +106,11 @@ const styles = StyleSheet.create({
   },
   name: {
     fontFamily: theme.fonts.body,
+  },
+  favourite: {
+    position: "absolute",
+    right: 25,
+    top: 25,
+    zIndex: 1,
   },
 });

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { FlatList, StyleSheet, View } from "react-native";
 import { RestaurantSearchBar } from "../component/Restaurant.SearchBar";
 import { SafeView } from "../const/SafeView";
@@ -6,6 +6,7 @@ import { StatusBar } from "expo-status-bar";
 import { RestaurantCard } from "../component/RestaurantCard";
 import { RestaurantContext } from "../services/restaurant/restaurantContext";
 import ActivitiIndicator from "../component/ActivitiIndicator";
+import { Favouritebar } from "../component/favoruites/FavouriteBar";
 
 interface Props {
   navigation: any;
@@ -13,11 +14,20 @@ interface Props {
 
 export default ({ navigation }: Props) => {
   const { restaurants, isLoading } = useContext(RestaurantContext);
+  const [isFavouriteToggled, setIsFavouriteToggled] = useState(false);
+
   return (
     <>
       <SafeView>
         <View style={styles.searchBar}>
-          <RestaurantSearchBar placeholder="Search" />
+          <RestaurantSearchBar
+            isFavouriteToggled={isFavouriteToggled}
+            onFavouriteToggled={() =>
+              setIsFavouriteToggled(!isFavouriteToggled)
+            }
+            placeholder="Search"
+          />
+          {isFavouriteToggled && <Favouritebar />}
         </View>
         {isLoading && <ActivitiIndicator />}
         <FlatList

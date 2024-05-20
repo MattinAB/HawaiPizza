@@ -11,11 +11,16 @@ interface Props {
 export default ({ restaurant }: Props) => {
   return (
     <View style={styles.container}>
-      {Platform.OS === "android" ? (
-        <WebView style={styles.image} source={{ uri: restaurant.photos[0] }} />
-      ) : (
-        <Image style={styles.image} source={{ uri: restaurant.photos[0] }} />
-      )}
+      <View style={styles.imageContainer}>
+        {Platform.OS === "android" ? (
+          <WebView
+            style={styles.image}
+            source={{ uri: restaurant.photos[0] }}
+          />
+        ) : (
+          <Image style={styles.image} source={{ uri: restaurant.photos[0] }} />
+        )}
+      </View>
 
       <Text style={styles.text}>{restaurant.name}</Text>
     </View>
@@ -29,12 +34,15 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   image: {
-    width: 180,
+    width: 120,
     aspectRatio: 1,
+  },
+  imageContainer: {
+    padding: 5,
   },
   text: {
     fontSize: 15,
     padding: 10,
-    textAlign: "justify",
+    textAlign: "center",
   },
 });

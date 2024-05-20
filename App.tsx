@@ -7,6 +7,7 @@ import {
 import { RestaurantProvider } from "./src/services/restaurant/restaurantContext";
 import { LocationProvider } from "./src/services/location/locationContext";
 import { Navigation } from "./src/navigation";
+import { FavouriteProvider } from "./src/services/favourites/FavouritesContext";
 
 export default function App() {
   const [latoLoad] = useLato({ Lato_400Regular });
@@ -16,10 +17,12 @@ export default function App() {
   }
 
   return (
-    <LocationProvider>
-      <RestaurantProvider>
-        <Navigation />
-      </RestaurantProvider>
-    </LocationProvider>
+    <FavouriteProvider>
+      <LocationProvider>
+        <RestaurantProvider>
+          <Navigation />
+        </RestaurantProvider>
+      </LocationProvider>
+    </FavouriteProvider>
   );
 }
