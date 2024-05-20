@@ -27,7 +27,9 @@ export default ({ navigation }: Props) => {
             }
             placeholder="Search"
           />
-          {isFavouriteToggled && <Favouritebar />}
+          {isFavouriteToggled && (
+            <Favouritebar onNavigate={navigation.navigate} />
+          )}
         </View>
         {isLoading && <ActivitiIndicator />}
         <FlatList

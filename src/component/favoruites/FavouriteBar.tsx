@@ -3,10 +3,15 @@ import { StyleSheet, ScrollView, View, Text } from "react-native";
 import { FavouritesContext } from "../../services/favourites/FavouritesContext";
 import { RestaurantCard } from "../RestaurantCard";
 import MapCallout from "../MapCallout";
+import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 
-export const Favouritebar = () => {
+interface Props {
+  onNavigate: any;
+}
+
+export const Favouritebar = ({ onNavigate }: Props) => {
   const { favourites } = useContext(FavouritesContext);
-
+  // pass onNavigate to <RestaurantInfo/> to take navigation.navigate as argument
   return (
     <ScrollView
       style={styles.container}
@@ -16,7 +21,12 @@ export const Favouritebar = () => {
       {favourites.map((restaurant: any) => {
         return (
           <View key={favourites.id}>
-            <MapCallout restaurant={restaurant} />
+            <TouchableWithoutFeedback
+              // put the body of navigation.navigate and use {restaurant} and render it from RestaurantInfo
+              onPress={() => onNavigate("RestaurantDetails", { restaurant })}
+            >
+              <MapCallout restaurant={restaurant} />
+            </TouchableWithoutFeedback>
           </View>
         );
       })}
