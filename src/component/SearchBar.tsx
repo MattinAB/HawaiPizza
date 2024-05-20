@@ -27,10 +27,10 @@ export const SearchBar = ({
     <View style={[styles.container, style]}>
       <AntDesign
         onPress={onIconPress}
-        style={{ marginRight: 5 }}
+        style={{ marginRight: 10 }}
         name={icon}
         size={20}
-        color="red"
+        color={icon == "search1" ? "black" : "red"}
       />
       <TextInput
         value={value}

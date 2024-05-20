@@ -12,6 +12,9 @@ interface Props {
 export const Favouritebar = ({ onNavigate }: Props) => {
   const { favourites } = useContext(FavouritesContext);
   // pass onNavigate to <RestaurantInfo/> to take navigation.navigate as argument
+  if (!favourites.length) {
+    return null;
+  }
   return (
     <ScrollView
       style={styles.container}
@@ -20,7 +23,7 @@ export const Favouritebar = ({ onNavigate }: Props) => {
     >
       {favourites.map((restaurant: any) => {
         return (
-          <View key={favourites.id}>
+          <View key={`@favourite ${restaurant.name}`}>
             <TouchableWithoutFeedback
               // put the body of navigation.navigate and use {restaurant} and render it from RestaurantInfo
               onPress={() => onNavigate("RestaurantDetails", { restaurant })}
