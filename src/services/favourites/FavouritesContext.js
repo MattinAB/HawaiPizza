@@ -37,14 +37,14 @@ export const FavouriteProvider = ({ children }) => {
     );
     setFavourites(newFavourites);
   };
-
-  useEffect(() => {
-    saveFavourite(favourites);
-  }, [favourites]);
-
   useEffect(() => {
     loadFavourite();
   }, []);
+  // Its importing to prefix the useEffect of loading the storage  before the saving Effect
+  // otherwise its will not work >>>>
+  useEffect(() => {
+    saveFavourite(favourites);
+  }, [favourites]);
 
   return (
     <FavouritesContext.Provider
