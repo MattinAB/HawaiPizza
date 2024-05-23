@@ -4,7 +4,7 @@ import styles from "../const/theme/styles";
 
 interface Props {
   children: React.ReactNode;
-  style?: any;
+  style?: ViewStyle | any;
 }
 export const AppText = ({ children, style, ...otherProps }: Props) => {
   return (

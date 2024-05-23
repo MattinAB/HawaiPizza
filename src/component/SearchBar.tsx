@@ -11,7 +11,7 @@ interface Props {
   onSubmitEditing: (value: any) => void;
   style?: ViewStyle;
   icon?: string;
-  onIconPress: () => void;
+  onIconPress?: () => void;
 }
 export const SearchBar = ({
   value,

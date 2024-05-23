@@ -6,13 +6,15 @@ import { WebView } from "react-native-webview";
 
 interface Props {
   restaurant: any;
+  isMap: any;
 }
 
-export default ({ restaurant }: Props) => {
+export default ({ restaurant, isMap }: Props) => {
+  const isAndroid = Platform.OS === "android";
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
-        {Platform.OS === "android" ? (
+        {isAndroid && isMap ? (
           <WebView
             style={styles.image}
             source={{ uri: restaurant.photos[0] }}

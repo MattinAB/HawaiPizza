@@ -65,7 +65,7 @@ export default ({ navigation }: Props) => {
                   navigation.navigate("RestaurantDetails", { restaurant })
                 }
               >
-                <MapCallout restaurant={restaurant} />
+                <MapCallout isMap restaurant={restaurant} />
               </Callout>
             </Marker>
           );
