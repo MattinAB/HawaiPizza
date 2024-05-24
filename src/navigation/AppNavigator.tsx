@@ -6,6 +6,7 @@ import MapScreen from "../Screen/MapScreen";
 import Entypo from "@expo/vector-icons/Entypo";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { RestaurantNavigator } from "./RestaurantNavigator";
+import { DrawerNavigator } from "./DrawerNavigatior";
 
 const Tab = createBottomTabNavigator();
 
@@ -36,7 +37,7 @@ export const AppNavigator = () => (
         ),
       }}
       name="Setting"
-      component={SettingScreen}
+      component={DrawerNavigator}
     />
   </Tab.Navigator>
 );

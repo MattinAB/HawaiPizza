@@ -11,15 +11,7 @@ import { RestaurantProvider } from "./src/services/restaurant/restaurantContext"
 import { LocationProvider } from "./src/services/location/locationContext";
 import { Navigation } from "./src/navigation";
 import { FavouriteProvider } from "./src/services/favourites/FavouritesContext";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyD7QpAw16BsZPhgzvFbNkkhd9O9xcTOJb8",
-  authDomain: "hawaipizzaab.firebaseapp.com",
-  projectId: "hawaipizzaab",
-  storageBucket: "hawaipizzaab.appspot.com",
-  messagingSenderId: "51270696155",
-  appId: "1:51270696155:web:28078f05f2a647304620fe",
-};
+import { AuthProvider } from "./src/services/authentication/AuthenticationContext";
 
 // Initialize Firebase
 // if (!firebase.getApps().length) {
@@ -35,12 +27,14 @@ export default function App() {
   }
 
   return (
-    <FavouriteProvider>
-      <LocationProvider>
-        <RestaurantProvider>
-          <Navigation />
-        </RestaurantProvider>
-      </LocationProvider>
-    </FavouriteProvider>
+    <AuthProvider>
+      <FavouriteProvider>
+        <LocationProvider>
+          <RestaurantProvider>
+            <Navigation />
+          </RestaurantProvider>
+        </LocationProvider>
+      </FavouriteProvider>
+    </AuthProvider>
   );
 }
