@@ -8,12 +8,17 @@ import Submit from "../component/Submit";
 import { AuthContext } from "../services/authentication/AuthenticationContext";
 import ErrorMessage from "../component/ErrorMessage";
 import "firebase/compat/auth";
+import Button from "../component/Button";
+
+interface Props {
+  navigation: any;
+}
 interface SubmitProps {
   email: string;
   password: string;
 }
 
-export default () => {
+export default ({ navigation }: Props) => {
   const [loginFaild, setLoginFaild] = useState(false);
   const { onLogin, error } = useContext(AuthContext);
 
@@ -69,10 +74,14 @@ export default () => {
                 autoCapitalize="none"
                 secureTextEntry
               />
-              <Submit title="Submit" />
+              <Submit title="Login" />
             </>
           )}
         </Formik>
+        <Button
+          title="Register"
+          onPress={() => navigation.navigate("Register")}
+        />
       </View>
     </SafeView>
   );

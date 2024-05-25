@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     padding: 10,
     width: "100%",
-    marginVertical: 10,
+    marginVertical: 5,
   },
   textInput: {
     flex: 1,

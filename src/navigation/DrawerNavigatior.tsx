@@ -1,18 +1,19 @@
 import React, { useContext } from "react";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { AuthContext } from "../services/authentication/AuthenticationContext";
-import LoginScreen from "../Screen/LoginScreen";
-import SettingScreen from "../Screen/SettingScreen";
+import { AccountNavigator } from "./AccountNavigator";
+import Home from "../Screen/Home";
 
 const Drawer = createDrawerNavigator();
 
 export const DrawerNavigator = () => {
-  const { isAuthenticate } = useContext(AuthContext);
+  const { isAuthenticated } = useContext(AuthContext);
+
   return (
     <Drawer.Navigator>
-      <Drawer.Screen name="Setting" component={SettingScreen} />
-      {isAuthenticate ? (
-        <Drawer.Screen name="Login" component={LoginScreen} />
+      <Drawer.Screen name="Home" component={Home} />
+      {!isAuthenticated ? (
+        <Drawer.Screen name="Login" component={AccountNavigator} />
       ) : null}
     </Drawer.Navigator>
   );
