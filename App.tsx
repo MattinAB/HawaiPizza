@@ -13,6 +13,15 @@ import { Navigation } from "./src/navigation";
 import { FavouriteProvider } from "./src/services/favourites/FavouritesContext";
 import { AuthProvider } from "./src/services/authentication/AuthenticationContext";
 
+const firebaseConfig = {
+  apiKey: "AIzaSyD7QpAw16BsZPhgzvFbNkkhd9O9xcTOJb8",
+  authDomain: "hawaipizzaab.firebaseapp.com",
+  projectId: "hawaipizzaab",
+  storageBucket: "hawaipizzaab.appspot.com",
+  messagingSenderId: "51270696155",
+  appId: "1:51270696155:web:28078f05f2a647304620fe",
+};
+
 // Initialize Firebase
 // if (!firebase.getApps().length) {
 export const app = firebase.initializeApp(firebaseConfig);
