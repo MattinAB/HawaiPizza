@@ -28,9 +28,9 @@ export default ({ navigation }: Props) => {
   });
   const handleSubmit = async ({ email, password }: SubmitProps) => {
     await onLogin(email, password);
-    if (error) {
-      setLoginFaild(true);
-    }
+
+    if (error) return setLoginFaild(true);
+
     setLoginFaild(false);
   };
 
@@ -74,6 +74,7 @@ export default ({ navigation }: Props) => {
                 autoCapitalize="none"
                 secureTextEntry
               />
+
               <Submit title="Login" />
             </>
           )}

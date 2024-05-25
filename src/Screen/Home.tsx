@@ -3,6 +3,7 @@ import { View, StyleSheet, Image } from "react-native";
 import { SafeView } from "../const/SafeView";
 import Button from "../component/Button";
 import { AuthContext } from "../services/authentication/AuthenticationContext";
+import UserInfo from "../component/UserInfo";
 
 export default () => {
   const { onLogout, isAuthenticated } = useContext(AuthContext);
@@ -13,6 +14,11 @@ export default () => {
         style={styles.image}
         source={require("../../assets/HawaiPizzaLogo.jpg")}
       />
+      {isAuthenticated && (
+        <View style={styles.userInfo}>
+          <UserInfo />
+        </View>
+      )}
       {isAuthenticated && (
         <View style={styles.button}>
           <Button title="Logout" onPress={() => onLogout()} />
@@ -35,5 +41,10 @@ const styles = StyleSheet.create({
     bottom: 10,
     width: "50%",
     left: "25%",
+  },
+  userInfo: {
+    position: "absolute",
+    top: "40%",
+    left: "5%",
   },
 });

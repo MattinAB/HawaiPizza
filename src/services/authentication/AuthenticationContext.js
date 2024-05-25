@@ -5,6 +5,7 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState([]);
+  const [userInfo, setUserInfo] = useState([]);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -19,7 +20,7 @@ export const AuthProvider = ({ children }) => {
       })
       .catch((e) => {
         setIsLoading(false);
-        setError("Invalid Username orand Password");
+        setError("Invalid Username or/and Password");
       });
   };
   const onRegister = (email, password, repeatPassword) => {
@@ -31,7 +32,6 @@ export const AuthProvider = ({ children }) => {
       .then(({ user }) => {
         setIsLoading(true);
         setUser(user);
-        console.log(user);
         setIsLoading(false);
         setIsAuthenticated(true);
       })
@@ -42,6 +42,7 @@ export const AuthProvider = ({ children }) => {
   const onLogout = () => {
     setUser([]);
     setIsAuthenticated(false);
+    setUserInfo([]);
   };
 
   return (
@@ -54,6 +55,8 @@ export const AuthProvider = ({ children }) => {
         error,
         onLogin,
         onRegister,
+        setUserInfo,
+        userInfo,
       }}
     >
       {children}

@@ -14,6 +14,8 @@ interface SubmitProps {
   email: string;
   password: string;
   repeatPassword: string;
+  name: string;
+  phoneNumber: string;
 }
 interface Props {
   navigation: any;
@@ -21,17 +23,28 @@ interface Props {
 
 export default ({ navigation }: Props) => {
   const [loginFaild, setLoginFaild] = useState(false);
-  const { onRegister, error } = useContext(AuthContext);
+  const { onRegister, error, setUserInfo } = useContext(AuthContext);
 
   const validationShcema = Yup.object().shape({
     name: Yup.string().required().label("Name"),
     email: Yup.string().required().email().label("Email"),
     password: Yup.string().required().min(6).label("Password"),
     repeatPassword: Yup.string().required().min(6).label("Password"),
-    phoneNumber: Yup.number().min(11, "Number must Be at least 11").required(),
+    phoneNumber: Yup.string()
+      .min(10, "Number must Be at least 11")
+      .max(11)
+      .required(),
   });
-  const handleSubmit = ({ email, password, repeatPassword }: SubmitProps) => {
+  const handleSubmit = ({
+    email,
+    password,
+    repeatPassword,
+    name,
+    phoneNumber,
+  }: SubmitProps) => {
     onRegister(email, password, repeatPassword);
+    const userInfo = { email, name, phoneNumber };
+    setUserInfo(userInfo);
     if (error) return setLoginFaild(true);
     setLoginFaild(false);
   };
