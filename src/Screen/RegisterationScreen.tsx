@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { ScrollView } from "react-native-gesture-handler";
+import { ActivityIndicator } from "react-native-paper";
 import { View, Image, StyleSheet, Text } from "react-native";
 import { Formik } from "formik";
 import { SafeView } from "../const/SafeView";
@@ -10,6 +11,7 @@ import "firebase/compat/auth";
 import Submit from "../component/Submit";
 import Button from "../component/Button";
 import * as Yup from "yup";
+import { colors } from "../const/theme/colors";
 interface SubmitProps {
   email: string;
   password: string;
@@ -23,7 +25,7 @@ interface Props {
 
 export default ({ navigation }: Props) => {
   const [loginFaild, setLoginFaild] = useState(false);
-  const { onRegister, error, setUserInfo } = useContext(AuthContext);
+  const { onRegister, error, setUserInfo, isLoading } = useContext(AuthContext);
 
   const validationShcema = Yup.object().shape({
     name: Yup.string().required().label("Name"),
@@ -115,12 +117,17 @@ export default ({ navigation }: Props) => {
                   keyboardType="numeric"
                 />
                 <ErrorMessage error={error} visible={loginFaild} />
-                <Submit title="Register" />
+                {isLoading ? (
+                  <ActivityIndicator animating={true} color={colors.danger} />
+                ) : (
+                  <Submit title="Register" />
+                )}
               </ScrollView>
             </>
           )}
         </Formik>
       </View>
+
       <Button
         style={styles.backButton}
         title="Back"

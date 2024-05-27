@@ -1,5 +1,6 @@
 import React, { createContext, useState } from "react";
 import { loginRequest, registerRequest } from "./AuthenticationService";
+import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 export const AuthContext = createContext();
 
@@ -9,6 +10,13 @@ export const AuthProvider = ({ children }) => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  firebase.auth().onAuthStateChanged((usr) => {
+    if (usr) {
+      setUser(usr);
+    }
+    setIsLoading(false);
+  });
 
   const onLogin = (email, password) => {
     setIsLoading(true);
@@ -28,9 +36,9 @@ export const AuthProvider = ({ children }) => {
       setError("Error : password  not match !");
       return;
     }
+    setIsLoading(true);
     registerRequest(email, password)
       .then(({ user }) => {
-        setIsLoading(true);
         setUser(user);
         setIsLoading(false);
         setIsAuthenticated(true);
@@ -40,9 +48,11 @@ export const AuthProvider = ({ children }) => {
       );
   };
   const onLogout = () => {
+    firebase.auth().signOut();
+    setError(null);
     setUser([]);
-    setIsAuthenticated(false);
     setUserInfo([]);
+    setIsAuthenticated(false);
   };
 
   return (

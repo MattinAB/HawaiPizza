@@ -1,7 +1,8 @@
 import React, { useContext, useState } from "react";
 import { Formik } from "formik";
-import { View, Image, StyleSheet, Text } from "react-native";
+import { View, Image, StyleSheet } from "react-native";
 import { SafeView } from "../const/SafeView";
+import { ActivityIndicator } from "react-native-paper";
 import { TextInputField } from "../component/TextInput";
 import * as Yup from "yup";
 import Submit from "../component/Submit";
@@ -9,6 +10,7 @@ import { AuthContext } from "../services/authentication/AuthenticationContext";
 import ErrorMessage from "../component/ErrorMessage";
 import "firebase/compat/auth";
 import Button from "../component/Button";
+import { colors } from "../const/theme/colors";
 
 interface Props {
   navigation: any;
@@ -20,7 +22,7 @@ interface SubmitProps {
 
 export default ({ navigation }: Props) => {
   const [loginFaild, setLoginFaild] = useState(false);
-  const { onLogin, error } = useContext(AuthContext);
+  const { onLogin, error, isLoading } = useContext(AuthContext);
 
   const validationShcema = Yup.object().shape({
     email: Yup.string().required().email().label("Email"),
@@ -75,7 +77,11 @@ export default ({ navigation }: Props) => {
                 secureTextEntry
               />
 
-              <Submit title="Login" />
+              {isLoading ? (
+                <ActivityIndicator animating={true} color={colors.danger} />
+              ) : (
+                <Submit title="Login" />
+              )}
             </>
           )}
         </Formik>

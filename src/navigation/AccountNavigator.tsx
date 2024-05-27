@@ -9,7 +9,11 @@ const Stack = createStackNavigator();
 export const AccountNavigator = () => {
   const { isAuthenticated } = useContext(AuthContext);
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
       <Stack.Screen name="LoginScreen" component={LoginScreen} />
       {!isAuthenticated ? (
         <Stack.Screen name="Register" component={RegisterationScreen} />
